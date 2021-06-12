@@ -41,7 +41,7 @@ namespace RingdahlJonahHomework08
             test = Int32.TryParse(input, out amount);
             if (!test)
             {
-                Console.WriteLine("Please Enter a Vaild Number!");
+                Console.WriteLine("Please Enter a Valid Number!");
                 goto input;
             }
 
