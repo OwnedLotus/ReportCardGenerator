@@ -27,13 +27,14 @@ namespace RingdahlJonahHomework08
             #region Variables
             string input;
             int numberOfReports;
+            int idCounter = 0;
             bool test;
             bool? isBlank; //catching if the input the user entered is blank
 
             #endregion
             
             #region Entering User Input
-            System.Console.WriteLine("Please Enter the Amount of ReportCards to be made");
+            System.Console.WriteLine("Please Enter the Amount of ReportCards:");
             input:input = Console.ReadLine();
 
             test = Int32.TryParse(input, out numberOfReports);
@@ -47,13 +48,30 @@ namespace RingdahlJonahHomework08
             
             #endregion
 
-            Hashtable reportcardTable = new Hashtable(numberOfReports);
+            Hashtable reportcardTable = new Hashtable();
 
 
             Console.WriteLine("Please Enter the Values for the Student: ");
+
+            for (int i = 0; i < numberOfReports; i++)
+            {
+                reportcardTable.Add(idCounter, new ReportCard(idCounter));
+            }
+            
+            
+            /*
             foreach (ReportCard student in reportcardTable.Values)
             {
-                
+                reportcardTable.Add(idCounter, new ReportCard(idCounter));
+            }
+            */
+            foreach (ReportCard students in reportcardTable)
+            {
+                System.Console.WriteLine("Student Id: {0}", students.Id);
+                System.Console.WriteLine("Student Name: {0}", students.studentName);
+                System.Console.WriteLine("Student Midterm Grade: {0} \n Letter Grade: {1}",students.midtermGrade, students.midtermLetterGrade);
+                System.Console.WriteLine("Student Final Grade: {0} \n Letter Grade: {1}",students.midtermGrade, students.midtermLetterGrade);
+
             }
 
         }
@@ -81,19 +99,7 @@ namespace RingdahlJonahHomework08
             return blank;
         }
 
-/*
-        static bool BlankToNonNull(bool? blank)
-        {
-            bool check = true;
-
-            if (blank != null)
-            {
-                check = (bool)blank;
-            }
-
-            return check;
-        }
-*/
+        
         #endregion
     }
 }

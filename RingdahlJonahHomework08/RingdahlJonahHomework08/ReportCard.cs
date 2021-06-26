@@ -28,8 +28,8 @@ namespace RingdahlJonahHomework08
                     throw new ArgumentOutOfRangeException($"{nameof(value)} must be between 0 and 100");
             }
         }
-        private char midtermLetterGrade { get; set; }
-        private char finalLetterGrade { get; set; }
+        public char midtermLetterGrade { get; set; }
+        public char finalLetterGrade { get; set; }
         #endregion
 
 
@@ -76,15 +76,19 @@ namespace RingdahlJonahHomework08
         }
         #endregion
 
-        #region Constructor
-        public ReportCard()
+        #region Constructor Method-Based
+        public ReportCard(int id)
         {
+            this.Id = id;
+
             this.studentName = StudentName();
             this.midtermGrade = Grade(1);
+            this.finalGrade = Grade(2);
         }
         #endregion
 
         #region Methods
+
         public string StudentName()
         {
             string name;
@@ -103,7 +107,7 @@ namespace RingdahlJonahHomework08
 
             if (num == 1)
             {
-                System.Console.WriteLine("Please Enter the MidtermGrade: ");
+                System.Console.WriteLine("Please Enter the Midterm Grade: ");
                 input: input = Console.ReadLine();
 
                 test = Int32.TryParse(input, out amount);
