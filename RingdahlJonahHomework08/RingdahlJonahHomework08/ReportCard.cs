@@ -7,11 +7,27 @@ namespace RingdahlJonahHomework08
 {
     class ReportCard
     {
-        #region Private Properties
-        private int Id { get; set; }
-        private string studentName { get; set; }
-        private int midtermGrade { get; set; }
-        private int finalGrade { get; set; }
+        #region Properties
+        public int Id { get; set; }
+        public string studentName { get; set; }
+        public int midtermGrade 
+        {
+            get{return midtermGrade;}
+            set 
+            { 
+                if(value < 0 || value > 100)
+                    throw new ArgumentOutOfRangeException($"{nameof(value)} must be between 0 and 100");
+            }
+        }
+        public int finalGrade 
+        {
+            get{return finalGrade;}
+            set 
+            { 
+                if(value < 0 || value > 100)
+                    throw new ArgumentOutOfRangeException($"{nameof(value)} must be between 0 and 100");
+            }
+        }
         private char midtermLetterGrade { get; set; }
         private char finalLetterGrade { get; set; }
         #endregion
@@ -53,7 +69,7 @@ namespace RingdahlJonahHomework08
         }
         #endregion
 
-        #region Grade not availble Override
+        #region Number Grade not availble Override
         public ReportCard(int id, string studentName)
         {
             this.studentName = studentName;
@@ -93,7 +109,7 @@ namespace RingdahlJonahHomework08
                 test = Int32.TryParse(input, out amount);
                 if (!test)
                 {
-                    Console.WriteLine("Please Enter a Vaild Number!");
+                    Console.WriteLine("Please Enter a Valid Number!");
                     goto input;
                 }
                 num = amount;
@@ -107,7 +123,7 @@ namespace RingdahlJonahHomework08
                 test = Int32.TryParse(input, out amount);
                 if (!test)
                 {
-                    Console.WriteLine("Please Enter a Vaild Number!");
+                    Console.WriteLine("Please Enter a Valid Number!");
                     goto input;
                 }
 

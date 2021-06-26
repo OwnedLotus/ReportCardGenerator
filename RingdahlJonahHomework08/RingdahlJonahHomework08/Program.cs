@@ -15,15 +15,7 @@ A for an average of 90 to 100, B for 80 to 90, C for 70 to 80, D for 60 to 70, a
 Display all the data if the instantiation is successful.
 */
 using System;
-using System.Collections.Generic;
-using System.Threading;
-
-/* The point of this program is to create several objects of the users choosing that are reportcards.
- * They will throw exceptions if there is something wrong with the logic that has been entered.
- * It does its own conversion and error handling through the ReportCard Class.
- * My Original Idea was to make the Object array dynamic but from what I have read it seems to be impossible to
- * dynamically name objects in loops
- */
+using System.Collections;
 
 namespace RingdahlJonahHomework08
 {
@@ -31,38 +23,77 @@ namespace RingdahlJonahHomework08
     {
         static void Main(string[] args)
         {
-            string input;
-            int amount;
-            bool test;
 
+            #region Variables
+            string input;
+            int numberOfReports;
+            bool test;
+            bool? isBlank; //catching if the input the user entered is blank
+
+            #endregion
+            
+            #region Entering User Input
             System.Console.WriteLine("Please Enter the Amount of ReportCards to be made");
             input:input = Console.ReadLine();
 
-            test = Int32.TryParse(input, out amount);
-            if (!test)
+            test = Int32.TryParse(input, out numberOfReports);
+            
+            if (!test || (bool)CheckIfBlank(input))
             {
-                Console.WriteLine("Please Enter a Valid Number!");
+                System.Console.WriteLine("Given Input was not accepted: Please Try Again!");
                 goto input;
             }
 
-            List<ReportCard> reportCards = new List<ReportCard>(amount);
+            
+            #endregion
 
-            for (int i = 0; i < reportCards.Count; i++)
+            Hashtable reportcardTable = new Hashtable(numberOfReports);
+
+
+            Console.WriteLine("Please Enter the Values for the Student: ");
+            foreach (ReportCard student in reportcardTable.Values)
             {
-                string name;
-                int mid, fin;
-                char midLetter, finLetter;
-
-                name = reportCards[i].StudentName();
-                mid = reportCards[i].Grade(1);
-                fin = reportCards[i].Grade(2);
-
-                midLetter = reportCards[i].LetterGrade(mid);
-                finLetter = reportCards[i].LetterGrade(fin);
-
-                reportCards.Add(new ReportCard(i, name, mid, fin, midLetter, finLetter));
+                
             }
 
         }
+
+        #region Public Methods
+        ///This method returns the value of a bool while given
+        static bool? CheckIfBlank(params object[] obj) 
+        {
+            bool? blank = null;
+
+            foreach (var item in obj)
+            {
+                if ((string)item == "\n" || (string)item == " ")
+                {
+                    blank = true;
+                }
+                else  blank = false;
+            }
+
+            if (blank is null)
+                throw new NullReferenceException($"(nameof{blank}) is Null"); 
+                
+                
+            //returns null if error has occurred
+            return blank;
+        }
+
+/*
+        static bool BlankToNonNull(bool? blank)
+        {
+            bool check = true;
+
+            if (blank != null)
+            {
+                check = (bool)blank;
+            }
+
+            return check;
+        }
+*/
+        #endregion
     }
 }
