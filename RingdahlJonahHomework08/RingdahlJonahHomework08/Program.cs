@@ -15,6 +15,7 @@ A for an average of 90 to 100, B for 80 to 90, C for 70 to 80, D for 60 to 70, a
 Display all the data if the instantiation is successful.
 */
 using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace RingdahlJonahHomework08
@@ -48,6 +49,8 @@ namespace RingdahlJonahHomework08
             #endregion
 
             var reportcardTable = new List<ReportCard>(); // creates an id table set to the number inputted by the user
+
+            Hashtable reportCardTable = new Hashtable();
 
             for (int i = 0; i < numberOfReports; i++) //individually creates the individual reportcards
             {
