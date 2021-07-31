@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using System.Text;
 
 namespace RingdahlJonahHomework08
 {
     class ReportCard
     {
         #region Properties
+
+        // The properties of a Reportcard
         public int Id { get; set; }
         public string studentName { get; set; }
-        public int midtermGrade 
+        public int midtermGrade // Sets a specific range for the grade between 0 and 100, if not an exception is thrown
         {
             get{return midtermGrade;}
             set 
@@ -19,7 +18,7 @@ namespace RingdahlJonahHomework08
                     throw new ArgumentOutOfRangeException($"{nameof(value)} must be between 0 and 100");
             }
         }
-        public int finalGrade 
+        public int finalGrade // Sets a specific range for the grade between 0 and 100, if not an exception is thrown
         {
             get{return finalGrade;}
             set 
@@ -32,6 +31,17 @@ namespace RingdahlJonahHomework08
         public char finalLetterGrade { get; set; }
         #endregion
 
+
+        /// <summary>
+        /// Constructors for every legal case solution for the report card to be built with
+        /// Not every constructor will be used in the main program
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="studentName"></param>
+        /// <param name="midtermGrade"></param>
+        /// <param name="finalGrade"></param>
+        /// <param name="midtermLetterGrade"></param>
+        /// <param name="finalLetterGrade"></param>
 
         #region Full ReportCard Override
         public ReportCard(int id, string studentName, int midtermGrade, int finalGrade, char midtermLetterGrade, char finalLetterGrade)
@@ -81,9 +91,9 @@ namespace RingdahlJonahHomework08
         {
             this.Id = id;
 
-            this.studentName = StudentName();
-            this.midtermGrade = Grade(1);
-            this.finalGrade = Grade(2);
+            studentName = StudentName();
+            midtermGrade = Grade(1);
+            finalGrade = Grade(2);
         }
         #endregion
 
@@ -99,7 +109,7 @@ namespace RingdahlJonahHomework08
             return name;
         }
 
-        public int Grade(int num)
+        public int Grade(int num) //Number that is passed determines what the function is to do with the method
         {
             int amount;
             bool test;
@@ -138,7 +148,7 @@ namespace RingdahlJonahHomework08
         }
         
 
-        public char LetterGrade(int grade)
+        public char LetterGrade(int grade) // a case switch solution of finding the Letter Grade for a inputted grade
         {
             char letterGrade;
 

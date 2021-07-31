@@ -15,7 +15,7 @@ A for an average of 90 to 100, B for 80 to 90, C for 70 to 80, D for 60 to 70, a
 Display all the data if the instantiation is successful.
 */
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace RingdahlJonahHomework08
 {
@@ -25,53 +25,46 @@ namespace RingdahlJonahHomework08
         {
 
             #region Variables
+
             string input;
             int numberOfReports;
-            int idCounter = 0;
             bool test;
-            bool? isBlank; //catching if the input the user entered is blank
 
             #endregion
             
             #region Entering User Input
             System.Console.WriteLine("Please Enter the Amount of ReportCards:");
-            input:input = Console.ReadLine();
+            READ_ERROR:input = Console.ReadLine();
 
-            test = Int32.TryParse(input, out numberOfReports);
+            test = Int32.TryParse(input, out numberOfReports); //tryparsing statement that returns a bool if the method executes and returns the parsed number
             
-            if (!test || (bool)CheckIfBlank(input))
+            if (!test || (bool)CheckIfBlank(input)) //tests if test is not false which means the parser works and checks if the input was empty from CheckIfBlank method
             {
                 System.Console.WriteLine("Given Input was not accepted: Please Try Again!");
-                goto input;
+                goto READ_ERROR;
             }
 
             
             #endregion
 
-            Hashtable reportcardTable = new Hashtable();
+            var reportcardTable = new List<ReportCard>(); // creates an id table set to the number inputted by the user
 
+            for (int i = 0; i < numberOfReports; i++) //individually creates the individual reportcards
+            {
+                reportcardTable.Add(ReportCard );// based on the constructor, it asks the user for the necessary information
+            }
 
             Console.WriteLine("Please Enter the Values for the Student: ");
-
-            for (int i = 0; i < numberOfReports; i++)
-            {
-                reportcardTable.Add(idCounter, new ReportCard(idCounter));
-            }
             
-            
-            /*
-            foreach (ReportCard student in reportcardTable.Values)
+            foreach (ReportCard students in reportcardTable) //prints out information on the students
             {
-                reportcardTable.Add(idCounter, new ReportCard(idCounter));
-            }
-            */
-            foreach (ReportCard students in reportcardTable)
-            {
+                int i = 1;
+                reportcardTable.Add(i, new ReportCard(i));
                 System.Console.WriteLine("Student Id: {0}", students.Id);
                 System.Console.WriteLine("Student Name: {0}", students.studentName);
-                System.Console.WriteLine("Student Midterm Grade: {0} \n Letter Grade: {1}",students.midtermGrade, students.midtermLetterGrade);
-                System.Console.WriteLine("Student Final Grade: {0} \n Letter Grade: {1}",students.midtermGrade, students.midtermLetterGrade);
-
+                System.Console.WriteLine("Student Midterm Grade: {0} \n Letter Grade: {1}", students.midtermGrade, students.midtermLetterGrade);
+                System.Console.WriteLine("Student Final Grade: {0} \n Letter Grade: {1}", students.midtermGrade, students.midtermLetterGrade);
+                i++;
             }
 
         }
@@ -80,25 +73,23 @@ namespace RingdahlJonahHomework08
         ///This method returns the value of a bool while given
         static bool? CheckIfBlank(params object[] obj) 
         {
-            bool? blank = null;
+            bool? isBlank = null; // nullable bool for error checking, if everything should not be null if so, program throws an null exception
 
-            foreach (var item in obj)
+            foreach (var item in obj) // Iterates throw the given arguments to check if an argument is blank
             {
-                if ((string)item == "\n" || (string)item == " ")
+                if ((item.ToString() == null) || (item.ToString() == "\n") || (item.ToString() == "\0")) // If user enters a "next line character '\n'" or a blank space program will set bool to true
                 {
-                    blank = true;
+                    isBlank = true;
                 }
-                else  blank = false;
+                else  isBlank = false;
             }
 
-            if (blank is null)
-                throw new NullReferenceException($"(nameof{blank}) is Null"); 
-                
+            if (isBlank == null)
+                throw new NullReferenceException($"(nameof{isBlank}) is Null");        
                 
             //returns null if error has occurred
-            return blank;
+            return isBlank;
         }
-
         
         #endregion
     }
