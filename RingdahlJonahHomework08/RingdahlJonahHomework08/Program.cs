@@ -15,7 +15,7 @@ A for an average of 90 to 100, B for 80 to 90, C for 70 to 80, D for 60 to 70, a
 Display all the data if the instantiation is successful.
 */
 using System;
-using System.Collections.Generic;
+
 
 namespace RingdahlJonahHomework08
 {
@@ -47,19 +47,14 @@ namespace RingdahlJonahHomework08
             
             #endregion
 
-            var reportcardTable = new List<ReportCard>(); // creates an id table set to the number inputted by the user
-
-            for (int i = 0; i < numberOfReports; i++) //individually creates the individual reportcards
-            {
-                reportcardTable.Add(ReportCard );// based on the constructor, it asks the user for the necessary information
-            }
+            ReportCard[] reportCards = new ReportCard[numberOfReports];
 
             Console.WriteLine("Please Enter the Values for the Student: ");
             
-            foreach (ReportCard students in reportcardTable) //prints out information on the students
+            foreach (ReportCard students in reportCards) //prints out information on the students
             {
-                int i = 1;
-                reportcardTable.Add(i, new ReportCard(i));
+                int i = 0;
+                reportCards[i] = ReportCard(i);
                 System.Console.WriteLine("Student Id: {0}", students.Id);
                 System.Console.WriteLine("Student Name: {0}", students.studentName);
                 System.Console.WriteLine("Student Midterm Grade: {0} \n Letter Grade: {1}", students.midtermGrade, students.midtermLetterGrade);
