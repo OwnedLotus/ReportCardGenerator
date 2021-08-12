@@ -9,9 +9,7 @@
     <Grid>
         <TextBlock HorizontalAlignment="Center" Height="24" Margin="10" VerticalAlignment="Top"  FontSize="20" Text="Report Card Generator" />
 
-        <Button x:Name="generateButton" Content="Add!" HorizontalAlignment="Left" Margin="339,379,0,0" VerticalAlignment="Top" Click="Button_Click" ClickMode="Release"/>
-        <Label x:Name="fName" Content="First Name" HorizontalAlignment="Left" Margin="134,85,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lName" Content="Last Name" HorizontalAlignment="Left" Margin="134,116,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="startButton" Content="Start!" HorizontalAlignment="Center" Margin="0,231,0,0" VerticalAlignment="Top" Click="Button_Click" ClickMode="Release" Height="82" Width="107"/>
 
 
     </Grid>

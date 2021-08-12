@@ -24,60 +24,13 @@ namespace ReportCardGenerator
         public MainWindow()
         {
             InitializeComponent();
-
-            #region Variables
-
-            string input;
-            int numOfRepos;
-            bool test;
-            #endregion
-
-
-
-            #region User Input
-
-            input = numBox.Text;
-
-            test = Int32.TryParse(input, out numOfRepos);
-
-            /*if (!test || (bool)CheckIfBlank(input))
-            {//Holding error catcher
-                System.Console.WriteLine("Given Input was not accepted: Please Try Again!");
-                throw new Exception($"(nameof{input}) is Invalid. Please enter Legal input");
-            }*/
-            #endregion
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            ReportCardGeneration reportCardGeneration = new ReportCardGeneration();
+            reportCardGeneration.Show();
         }
-
-
-        #region Public Methods
-        ///This method returns the value of a bool while given
-
-        static bool? CheckIfBlank(params object[] obj)
-        {
-            bool? isBlank = null; // nullable bool for error checking, if everything should not be null if so, program throws an null exception
-
-            foreach (var item in obj) // Iterates throw the given arguments to check if an argument is blank
-            {
-                if ((item.ToString() == null) || (item.ToString() == "\n") || (item.ToString() == "\0")) // If user enters a "next line character '\n'" or a blank space program will set bool to true
-                {
-                    isBlank = true;
-                }
-                else
-                    isBlank = false;
-            }
-
-            if (isBlank == null)
-                throw new NullReferenceException($"(nameof{isBlank}) is Null");
-
-            //returns null if error has occurred
-            return isBlank;
-        }
-        #endregion
 
         private void generateButton_SourceUpdated(object sender, DataTransferEventArgs e)
         {

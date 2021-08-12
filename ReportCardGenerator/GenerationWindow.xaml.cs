@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace ReportCardGenerator
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for GenerationWindow.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class GenerationWindow : Window
     {
-        public Window1()
+        public GenerationWindow()
         {
             InitializeComponent();
         }
