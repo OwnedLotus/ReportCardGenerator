@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace ReportCardGenerator
 {
@@ -20,11 +21,15 @@ namespace ReportCardGenerator
     /// </summary>
     public partial class ReportCardGeneration : Window
     {
+        List<Student> students = new List<Student>();
+
+        string fileName = "ReportsPrintout.txt";
+        string path = "D:/GitHub/ReportCardGenerator/";
+
         public ReportCardGeneration()
         {
             InitializeComponent();
-
-            
+          
         }
 
         private void subButton_Click(object sender, RoutedEventArgs e)
@@ -35,8 +40,6 @@ namespace ReportCardGenerator
 
             fName = fNameTxt.Text;
             lName = lNameTxt.Text;
-
-            HashSet<ReportCard> reportCards = new HashSet<ReportCard>();
 
             mCase = Int32.TryParse(midGradeTxt.Text, out mGrade);
             fCase = Int32.TryParse(finGradeTxt.Text, out fGrade);
@@ -57,7 +60,7 @@ namespace ReportCardGenerator
 
                 string fullName = fName + " " + lName;
 
-                reportCards.Add(new ReportCard(reportCards.Count, fullName, mGrade, fGrade));
+                students.Add(new Student(students.Count, fullName, mGrade, fGrade));
             }
         }
 
@@ -107,7 +110,25 @@ namespace ReportCardGenerator
 
         private void generateListButton_Click(object sender, RoutedEventArgs e)
         {
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
 
+            using (TextWriter tw = new StreamWriter(path))
+            {
+                File.Create(fileName);
+                foreach (Student student in students)
+                {
+                    tw.WriteLine(string.Format($"Student Id: {student.Id}"));
+                    tw.WriteLine(string.Format($"Student Name: {student.Name}"));
+                    tw.WriteLine(string.Format($"Student Midterm Grade: {student.MidtermGrade}"));
+                    tw.WriteLine(string.Format($"Student Midterm Letter Grade: {student.MidtermLetterGrade}"));
+                    tw.WriteLine(string.Format($"Student Final Grade: {student.FinalGrade}"));
+                    tw.WriteLine(string.Format($"Student Final Letter Grade: {student.FinalLetterGrade}"));
+                }
+            }
+            
         }
     }
 }

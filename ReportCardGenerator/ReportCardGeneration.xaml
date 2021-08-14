@@ -18,6 +18,5 @@
         <TextBox x:Name="finGradeTxt" Text="Enter" HorizontalAlignment="Left" Margin="354,219,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="120"/>
         <Button x:Name="subButton" Content="Submit" HorizontalAlignment="Left" Margin="146,344,0,0" VerticalAlignment="Top" Width="120" Click="subButton_Click"/>
         <Button x:Name="generateListButton" Content="Generate Reports" HorizontalAlignment="Left" Margin="477,344,0,0" VerticalAlignment="Top" Width="120" Click="generateListButton_Click"   />
-
     </Grid>
 </Window>
